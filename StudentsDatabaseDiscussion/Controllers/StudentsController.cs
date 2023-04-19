@@ -63,5 +63,64 @@ namespace StudentsDatabaseDiscussion.Controllers
 
             }
         }
+
+        [HttpPost]
+        public ActionResult DeleteStudent(int studentId)
+        {
+            using (StudentDBEntities entities = new StudentDBEntities())
+            {
+                var student = entities.TBL_STUDENTS.Where(x => x.ID == studentId).FirstOrDefault();
+
+                if (student == null) {
+                    return Json(new { msg = "Student not found." });
+                }
+
+                entities.TBL_STUDENTS.Remove(student);
+
+                if(entities.SaveChanges() >= 1)
+                {
+                    return Json(new { msg = "Student removed from database" });
+                }
+                else
+                {
+                    return Json(new { msg = "An error occurred" });
+                }
+
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateStudent(int studentId, string studentName, string studentAddress, string studentIdNumber, int studentYearLevel, string studentContactNumber , bool isActive)
+        {
+            using (StudentDBEntities entities = new StudentDBEntities())
+            {
+                var student = entities.TBL_STUDENTS.Where(x => x.ID == studentId).FirstOrDefault();
+
+                if (student == null) {
+                    return Json(new { msg = "Student not found" });
+                }
+
+                student.STUDENT_NAME = studentName;
+                student.STUDENT_ADDRESS = studentAddress;
+                student.STUDENT_NUMBER = studentIdNumber;
+                student.STATUS = isActive;
+                student.STUDENT_YEAR_LEVEL= studentYearLevel;
+                student.STUDENT_CONTACT_NUMBER = studentContactNumber;
+
+                
+                if(entities.SaveChanges() >= 1)
+                {
+                    return Json(new { msg = "Modified student details" });
+                }
+                else
+                {
+                    return Json(new { msg = "An error occurred" });
+                }
+
+            }
+        }
+
+
+
     }
 }
