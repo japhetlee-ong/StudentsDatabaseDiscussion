@@ -1,0 +1,89 @@
+﻿@model StudentsDatabaseDiscussion.Models.StudentsModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+</head>
+<body>
+
+    @if (ViewBag.AddStudentSuccess != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> @ViewBag.AddStudentSuccess
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (ViewBag.AddStudentFail != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> @ViewBag.AddStudentFail
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div>
+        <h3 style="text-align:center">Student Database</h3>
+        <button class="btn btn-info btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#add-student-modal">Add Student</button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Id Number</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Contact number</th>
+                    <th scope="col">Year level</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var student in Model.Students)
+                    {
+                        <tr>
+                            <th scope="row">@student.ID</th>
+                            <td>@student.STUDENT_NUMBER</td>
+                            <td>@student.STUDENT_NAME</td>
+                            <td>@student.STUDENT_CONTACT_NUMBER</td>
+                            <td>@student.STUDENT_YEAR_LEVEL</td>
+                            <td>@(student.STATUS ? "Active" : "Inactive")</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div id="add-student-modal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add new student</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @Html.Partial("_AddStudent", Model.Student)
+                </div>
+                @*<div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
