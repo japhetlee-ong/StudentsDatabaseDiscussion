@@ -1,0 +1,60 @@
+﻿@model StudentsDatabaseDiscussion.Models.LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+</head>
+
+<body>
+
+    @if (ViewBag.SuccessLogin != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> @ViewBag.SuccessLogin
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> @ViewBag.ErrorMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div>
+        <div class=" d-flex align-items-center justify-content-center vh-100" style="flex-direction:column">
+            @using (Html.BeginForm())
+            {
+                <div>
+                    <h3>Student Database System</h3>
+                    <div style="text-align:center">
+                        @Html.Label("Username", new { @class = "label-username" })
+                        @Html.TextBoxFor(Model => Model.Username, new { @class = "form-control", style = "margin:auto;", required = "required" })
+                    </div>
+                    <div style="text-align:center">
+                        @Html.Label("Password", new { @class = "label-password" })
+                        @Html.PasswordFor(Model => Model.Password, new { @class = "form-control", style = "margin:auto;", required = "required" })
+                    </div>
+                    <div style="text-align:center">
+                        <button class="btn btn-success btn-block" style="margin-top:10px; width:50%">Login</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

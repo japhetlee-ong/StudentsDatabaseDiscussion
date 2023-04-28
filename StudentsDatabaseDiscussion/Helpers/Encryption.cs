@@ -56,7 +56,7 @@ namespace StudentsDatabaseDiscussion.Helpers
             }
             catch (Exception e)
             {
-                return cipherText;
+                return "";
             }
         }
     }
