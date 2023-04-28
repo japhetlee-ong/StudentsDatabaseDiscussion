@@ -26,5 +26,6 @@ namespace StudentsDatabaseDiscussion.Models
         }
     
         public virtual DbSet<TBL_STUDENTS> TBL_STUDENTS { get; set; }
+        public virtual DbSet<TBL_ADMINS> TBL_ADMINS { get; set; }
     }
 }

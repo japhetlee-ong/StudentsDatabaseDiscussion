@@ -129,10 +129,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Encryption.cs" />
+    <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Models\StudentModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -149,6 +152,9 @@
       <DependentUpon>StudentModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\StudentsModel.cs" />
+    <Compile Include="Models\TBL_ADMINS.cs">
+      <DependentUpon>StudentModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TBL_STUDENTS.cs">
       <DependentUpon>StudentModel.tt</DependentUpon>
     </Compile>
@@ -248,6 +254,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Students\Index.cshtml" />
     <Content Include="Views\Students\_AddStudent.cshtml" />
+    <Content Include="Views\Registration\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

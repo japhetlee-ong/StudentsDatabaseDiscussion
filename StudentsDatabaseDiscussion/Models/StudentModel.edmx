@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="StudentDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBL_ADMINS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="DATE_CREATED" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="TBL_STUDENTS">
           <Key>
             <PropertyRef Name="ID" />
@@ -18,6 +30,7 @@
           <Property Name="STATUS" Type="bit" Nullable="false" />
         </EntityType>
         <EntityContainer Name="StudentDBModelStoreContainer">
+          <EntitySet Name="TBL_ADMINS" EntityType="Self.TBL_ADMINS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_STUDENTS" EntityType="Self.TBL_STUDENTS" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -38,7 +51,20 @@
         </EntityType>
         <EntityContainer Name="StudentDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TBL_STUDENTS" EntityType="Self.TBL_STUDENTS" />
+          <EntitySet Name="TBL_ADMINS" EntityType="StudentDBModel.TBL_ADMINS" />
         </EntityContainer>
+        <EntityType Name="TBL_ADMINS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="DATE_CREATED" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -55,6 +81,19 @@
                 <ScalarProperty Name="STUDENT_YEAR_LEVEL" ColumnName="STUDENT_YEAR_LEVEL" />
                 <ScalarProperty Name="STUDENT_CONTACT_NUMBER" ColumnName="STUDENT_CONTACT_NUMBER" />
                 <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_ADMINS">
+            <EntityTypeMapping TypeName="StudentDBModel.TBL_ADMINS">
+              <MappingFragment StoreEntitySet="TBL_ADMINS">
+                <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
