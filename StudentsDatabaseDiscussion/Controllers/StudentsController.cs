@@ -9,6 +9,7 @@ namespace StudentsDatabaseDiscussion.Controllers
 {
     public class StudentsController : Controller
     {
+
         // GET: Students
         public ActionResult Index()
         {
@@ -43,6 +44,7 @@ namespace StudentsDatabaseDiscussion.Controllers
         {
             using (StudentDBEntities entities = new StudentDBEntities())
             {
+
                 _STUDENTS.STATUS = true;
 
                 entities.TBL_STUDENTS.Add(_STUDENTS);

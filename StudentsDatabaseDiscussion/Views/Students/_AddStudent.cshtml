@@ -1,36 +1,38 @@
 ﻿@model StudentsDatabaseDiscussion.Models.TBL_STUDENTS
 
+
+
 <div>
     @using (Html.BeginForm("Index", "Students"))
     {
         @Html.AntiForgeryToken()
-    <div>
         <div>
-            @Html.Label("Student id number", new { @id = "lbl-student-id-number" })
-            @Html.TextBoxFor(Model => Model.STUDENT_NUMBER, new { @class = "form-control", style = "margin-auto", required = "required" })
+            <div>
+                @Html.Label("Student id number", new { @id = "lbl-student-id-number" })
+                @Html.TextBoxFor(Model => Model.STUDENT_NUMBER, new { @class = "form-control", style = "margin-auto", required = "required" })
+            </div>
+            <div>
+                @Html.Label("Student name", new { @id = "lbl-student-name" })
+                @Html.TextBoxFor(Model => Model.STUDENT_NAME, new { @class = "form-control", style = "margin-auto", required = "required" })
+            </div>
+            <div>
+                @Html.Label("Student address", new { @id = "lbl-student-address" })
+                @Html.TextBoxFor(Model => Model.STUDENT_ADDRESS, new { @class = "form-control", style = "margin-auto", required = "required" })
+            </div>
+            <div>
+                @Html.Label("Student year", new { @id = "lbl-student-year" })
+                @Html.TextBoxFor(Model => Model.STUDENT_YEAR_LEVEL, new { @class = "form-control", style = "margin-auto", required = "required", type = "number", min = 1, max = 10 })
+            </div>
+            <div>
+                @Html.Label("Student contact number", new { @id = "lbl-student-contact-number" })
+                @Html.TextBoxFor(Model => Model.STUDENT_CONTACT_NUMBER, new { @class = "form-control", style = "margin-auto", required = "required" })
+            </div>
         </div>
-        <div>
-            @Html.Label("Student name", new { @id = "lbl-student-name" })
-            @Html.TextBoxFor(Model => Model.STUDENT_NAME, new { @class = "form-control", style = "margin-auto", required = "required" })
-        </div>
-        <div>
-            @Html.Label("Student address", new { @id = "lbl-student-address" })
-            @Html.TextBoxFor(Model => Model.STUDENT_ADDRESS, new { @class = "form-control", style = "margin-auto", required = "required" })
-        </div>
-        <div>
-            @Html.Label("Student year", new { @id = "lbl-student-year" })
-            @Html.TextBoxFor(Model => Model.STUDENT_YEAR_LEVEL, new { @class = "form-control", style = "margin-auto", required = "required" })
-        </div>
-        <div>
-            @Html.Label("Student contact number", new { @id = "lbl-student-contact-number" })
-            @Html.TextBoxFor(Model => Model.STUDENT_CONTACT_NUMBER, new { @class = "form-control", style = "margin-auto", required = "required" })
-        </div>
-    </div>
 
-    <div style="text-align:right">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <input type="submit" value="Add student" class="btn btn-info"/> 
-    </div>
+        <div style="text-align:right">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <input type="submit" value="Add student" class="btn btn-info" />
+        </div>
 
     }
 </div>
