@@ -1,6 +1,12 @@
 ﻿@model StudentsDatabaseDiscussion.Models.TBL_STUDENTS
 
-
+@if (ViewBag.AddStudentValidationError != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> @ViewBag.AddStudentValidationError
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
 <div>
     @using (Html.BeginForm("Index", "Students"))

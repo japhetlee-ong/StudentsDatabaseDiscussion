@@ -33,6 +33,12 @@ namespace StudentsDatabaseDiscussion.Controllers
                     ViewBag.AddStudentSuccess = TempData["SuccessMessage"].ToString();
                 }
 
+                if (TempData["ValidationError"] != null)
+                {
+                    ViewBag.AddStudentValidationError = TempData["ValidationError"].ToString();
+                    studentModel.Student = (TBL_STUDENTS)TempData["StudentModel"];
+                }
+
                 return View(studentModel);
             }
 ;
@@ -44,6 +50,17 @@ namespace StudentsDatabaseDiscussion.Controllers
         {
             using (StudentDBEntities entities = new StudentDBEntities())
             {
+
+                var studentData = entities.TBL_STUDENTS.Where(x => x.STUDENT_NUMBER == _STUDENTS.STUDENT_NUMBER).FirstOrDefault();
+
+                if (studentData != null)
+                {
+
+                    TempData["ValidationError"] = "Student number already exist...";
+                    TempData["StudentModel"] = _STUDENTS;
+                    return RedirectToAction("Index");
+
+                }
 
                 _STUDENTS.STATUS = true;
 

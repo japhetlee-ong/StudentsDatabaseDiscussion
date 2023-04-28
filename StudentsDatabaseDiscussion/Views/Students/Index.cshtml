@@ -35,10 +35,20 @@
         </div>
     }
 
+    @if (ViewBag.AddStudentValidationError != null)
+    {
+        <div id='validation-error' style='display:none;'>
+            @if (ViewBag.AddStudentValidationError != null)
+            {
+                @ViewBag.AddStudentValidationError
+            }
+        </div>
+    }
+
     <div>
         <h3 style="text-align:center">Student Database</h3>
         <button class="btn btn-info btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#add-student-modal">Add Student</button>
-        <input class="form-control" type="text" id="search" placeholder="Search student"/>
+        <input class="form-control" type="text" id="search" placeholder="Search student" />
         <table class="table">
             <thead>
                 <tr>
@@ -120,13 +130,13 @@
                         </label>
                     </div>
 
-                    <input type="hidden" id="student-id"/>
-                   
+                    <input type="hidden" id="student-id" />
+
                     <div style="text-align:right">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <input type="button" value="Modify student" class="btn btn-info" onclick="modifyStudentDetails()" />
                     </div>
-                
+
                 </div>
             </div>
         </div>
@@ -145,6 +155,12 @@
                 $(this).toggle(isFound)
             })
         })
+
+        var validationError = '';
+        validationError = $('#validation-error').text();
+        if (validationError != '') {
+            $('#add-student-modal').modal('show');
+        }
     })
 
     function deleteStudent(studentId, studentName, studentIdNumber) {
